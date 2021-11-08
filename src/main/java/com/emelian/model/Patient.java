@@ -1,18 +1,35 @@
 package com.emelian.model;
+import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
-import org.springframework.stereotype.Component;
+@Entity
+@Table(name="patient")
+public class Patient{
 
-@Component
-public class Patient {
+    public Patient() {}
+
+    public Patient(String name, String surname,String patronymic) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic =patronymic;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private String name;
-    private String surname;
-    private String patronymic;
-    private String email;
-    private String birthday;
-    private boolean sex;
 
-    public Patient() { }
+    @NotEmpty(message = "Name should not be empty")
+    @Size(max = 100, message = "Name should be before 100 characters")
+    private String name;
+
+    @NotEmpty(message = "Surname should not be empty")
+    @Size(max = 150, message = "Surname should be before 150 characters")
+    private String surname;
+
+    @NotEmpty(message = "Surname should not be empty")
+    @Size(max = 150, message = "Patronymic should be before 150 characters")
+    private String patronymic;
 
     public int getId() {
         return id;
@@ -44,30 +61,6 @@ public class Patient {
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public boolean isSex() {
-        return sex;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
     }
 
 }

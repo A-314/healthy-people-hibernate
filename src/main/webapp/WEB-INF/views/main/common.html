@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xml:lang="en" lang="en">
+
+<div th:fragment="header">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Healthy people</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">sign in</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div th:fragment="menu">
+  <nav class="main-menu">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">Main page</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="/patients">
+                    <i class="fa fa-users fa-2x"></i>
+                    <span class="nav-text">Patients</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-user-md fa-2x"></i>
+                    <span class="nav-text">Doctors</span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-bar-chart-o fa-2x"></i>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </li>
+
+        </ul>
+
+        <ul class="logout">
+            <li>
+                <a href="#">
+                    <i class="fa  fa-2x"></i>
+                    <span class="nav-text">about program</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+ </body>
+</div>
+
+<div th:fragment="style-menu">
+    <style>
+        @import "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css";
+        .fa{position:relative;display:table-cell;width:50px;height:36px;text-align:center;vertical-align:middle;font-size:20px}
+        .main-menu{background:linear-gradient(to right, #212121,#2d3239);position:absolute;top:38px;bottom:0;left:0;width:160px}
+        .main-menu li{position:relative;display:block}
+        .main-menu li>a{position:relative;display:table;border: 1px solid black;border-collapse:collapse;color:#999;font-family:arial;font-size:14px;text-decoration:none;}
+        .main-menu .nav-text{position:relative;display:table-cell;vertical-align:middle;width:130px;font-family:'Roboto', sans-serif}
+        .main-menu>ul.logout{position:absolute;left:0;bottom:0}
+         nav ul,nav li{outline:0;margin:0;padding:0}
+        .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a{color:yellow;background-color:#5fa2db}
+        .color-back{background:linear-gradient(to right, #212121,#2d3239)}
+        .table-zone {margin-left: 160px;font-size:14px;width: auto;font-family: sans-serif}
+    </style>
+</div>
+
+</html>

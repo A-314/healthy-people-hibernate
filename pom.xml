@@ -17,6 +17,8 @@
 		<java.version>1.8</java.version>
 		<hibernate.version>5.4.28.Final</hibernate.version>
 		<hibernate.validator.version>5.1.3.Final</hibernate.validator.version>
+		<!--Bootstrap-->
+		<webjars-locator.version>0.30</webjars-locator.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +39,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
@@ -106,6 +114,7 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<!-- Bootstrap-->
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
