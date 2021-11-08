@@ -7,7 +7,6 @@ import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -52,5 +51,4 @@ public class SpringMVCDispatcherServletInitializer extends AbstractAnnotationCon
 		FilterRegistration.Dynamic characterEncoding = aContext.addFilter("characterEncoding", characterEncodingFilter);
 		characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
 	}
-
 }
