@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Patients</title>
+    <div th:replace="/main/common.html :: style-menu"></div>
+    <style>
+        *{font-family:sans-serif}
+        .btn{margin:1%; font-size:15px; font-weight:bold; width:auto; background-color: #82b6e3}
+        .table{background-color:#e6f3fe;border-radius: 5px; font-size:15px; margin: 0 1% 0 1%;width: 98%;font-family: sans-serif}
+        .btn:hover{color:yellow}
+    </style>
+</head>
+<body>
+
+<div th:replace="/main/common.html :: header"></div>
+
+<div id="container-fluid">
+    <div  th:replace="/main/common.html :: menu"/>
+    <div class="table-zone">
+        <a class="btn" href="/patients/new" role="button">Add patient</a>
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Name, surname</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient:${patientList}">
+                <td><a th:text="${patient.getName()+' '+patient.getSurname()}" th:href="@{patients/{id}/edit(id=${patient.getId()})}" ></a></td>
+                <td><a  th:href="@{patients/{id}(id=${patient.getId()})}" ></a></td>
+                <td><a th:href="@{patients/{id}(id=${patient.getId()})}" ></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
