@@ -37,6 +37,7 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("/WEB-INF/views/");
+		templateResolver.setCharacterEncoding("UTF-8");
 		templateResolver.setSuffix(".html");
 		return templateResolver;
 	}
@@ -52,6 +53,7 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+		resolver.setCharacterEncoding("UTF-8");//required for display on russian language
 		resolver.setTemplateEngine(templateEngine());
 		registry.viewResolver(resolver);
 	}
@@ -78,7 +80,7 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("com.emelian.model");
+		sessionFactory.setPackagesToScan("com.emelian.domain");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;

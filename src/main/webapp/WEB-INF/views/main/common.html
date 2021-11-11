@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xml:lang="en" lang="en">
 
-<div th:fragment="header">
+<div th:fragment="header" >
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Healthy people</a>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">sign in</a>
+                <a class="nav-link" href="#">войти</a>
             </li>
         </ul>
     </nav>
@@ -18,35 +17,40 @@
             <li>
                 <a href="/">
                     <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">Main page</span>
+                    <span class="nav-text">Главная</span>
                 </a>
             </li>
             <li class="has-subnav">
                 <a href="/patients">
                     <i class="fa fa-users fa-2x"></i>
-                    <span class="nav-text">Patients</span>
+                    <span class="nav-text">Пациенты</span>
                 </a>
             </li>
             <li class="has-subnav">
                 <a href="#">
                     <i class="fa fa-user-md fa-2x"></i>
-                    <span class="nav-text">Doctors</span>
+                    <span class="nav-text">Доктора</span>
                 </a>
             </li>
             <li class="has-subnav">
                 <a href="#">
                     <i class="fa fa-bar-chart-o fa-2x"></i>
-                    <span class="nav-text">Reports</span>
+                    <span class="nav-text">Отчеты</span>
                 </a>
             </li>
-
+            <li class="has-subnav">
+                <a href="#">
+                    <i class="fa fa-envelope fa-2x"></i>
+                    <span class="nav-text">Рассылка</span>
+                </a>
+            </li>
         </ul>
 
         <ul class="logout">
             <li>
                 <a href="#">
-                    <i class="fa  fa-2x"></i>
-                    <span class="nav-text">about program</span>
+                    <i class="fa fa-2x"></i>
+                    <span class="nav-text">о программе</span>
                 </a>
             </li>
         </ul>
