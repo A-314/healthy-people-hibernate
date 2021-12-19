@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="ru">
+<!doctype>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,33 +18,18 @@
   </style>
 </head>
 <body>
+
 <div th:replace="/main/common.html :: header"/>
 <div th:replace="/main/common.html :: menu"/>
+
 <div class="container-fluid main-zone">
   <form  th:method="DElETE" th:action = "@{/patients/{id}(id=${patient.getId()})}" th:object="${patient}" novalidate>
     <input class="btn btn-delete" type="submit" value="Удалить">
   </form>
   <form th:method="PATCH" th:action = "@{/patients/{id}(id=${patient.getId()})}" th:object="${patient}" novalidate>
     <input class="btn btn-save" type="submit" value="Сохранить">
-    <div class="row g-3">
-      <div class="col-sm-4 input-group-sm">
-        <label for="Name" class="form-label">Имя:</label>
-        <input type="text" th:field="*{name}" class="form-control" id="Name"/>
-      </div>
-      <div class="col-sm-4 input-group-sm">
-        <label for="Surname" class="form-label">Фамилия:</label>
-        <input type="text" th:field="*{surname}"class="form-control" id="Surname">
-      </div>
-      <div class="col-sm-4 input-group-sm">
-        <label for="Patronymic" class="form-label">Отчество:</label>
-        <input type="text" th:field="*{patronymic}"class="form-control bg-color" id="Patronymic">
-      </div>
-      <div class="col-sm-4 input-group-sm">
-        <label for="Email" class="form-label">Почта:</label>
-        <input type="text" th:field="*{email}"class="form-control bg-color" id="Email">
-      </div>
 
-      </div>
+    <div th:replace="/patients/common-fields.html :: patient-fields"/>
 
   </form>
 </div>

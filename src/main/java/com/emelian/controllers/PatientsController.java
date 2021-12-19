@@ -13,6 +13,7 @@ import javax.validation.Valid;
 public class PatientsController {
 
     private final PatientDao patientDao;
+
     public PatientsController(PatientDao patientDao) {
         this.patientDao = patientDao;
     }
@@ -24,7 +25,7 @@ public class PatientsController {
     }
     @PostMapping()
     public String create(@ModelAttribute("patient") @Valid Patient patient){
-        patientDao.save(patient);
+        patientDao.save(patient, patient.getPerson());
         return "redirect:/patient/index";
     }
     @GetMapping("/new")
@@ -45,12 +46,11 @@ public class PatientsController {
             return "patients/edit";
         patientDao.update(id, person);
         return "redirect:/patients";
-    };
+    }
 
     @DeleteMapping("/{id}")
     public String deletePatient(@PathVariable("id") int id){
         patientDao.delete(id);
         return "redirect:/patients/index";
     }
-
 }

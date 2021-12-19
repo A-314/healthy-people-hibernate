@@ -27,6 +27,7 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 
 	private final ApplicationContext applicationContext;
 	private final Environment environment;
+
 	public SpringConfiguration(ApplicationContext applicationContext, Environment environment) {
 		this.applicationContext = applicationContext;
 		this.environment = environment;
@@ -37,11 +38,10 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 		templateResolver.setApplicationContext(applicationContext);
 		templateResolver.setPrefix("/WEB-INF/views/");
-		templateResolver.setCharacterEncoding("UTF-8");
 		templateResolver.setSuffix(".html");
+		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;
 	}
-
 	@Bean
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -49,7 +49,6 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 		templateEngine.setEnableSpringELCompiler(true);
 		return templateEngine;
 	}
-
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -75,22 +74,23 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter{
 		dataSource.setPassword(environment.getRequiredProperty("hibernate.connection.password"));
 		return dataSource;
 	}
-
 	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
+	public LocalSessionFactoryBean sessionFactory(){
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("com.emelian.domain");
+		sessionFactory.setPackagesToScan("com.emelian");
 		sessionFactory.setHibernateProperties(hibernateProperties());
-
 		return sessionFactory;
 	}
-
 	@Bean
 	public PlatformTransactionManager hibernateTransactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 		transactionManager.setSessionFactory(sessionFactory().getObject());
 		return transactionManager;
 	}
-
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		if (!registry.hasMappingForPattern("/static/**")) {
+			registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");}
+		 }
 }

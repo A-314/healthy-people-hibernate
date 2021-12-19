@@ -31,9 +31,9 @@
             </thead>
             <tbody>
             <tr th:each="patient:${patientList}">
-                <td><a th:text="${patient.getName()+' '+patient.getSurname()}" th:href="@{patients/{id}/edit(id=${patient.getId()})}" ></a></td>
-                <td><a  th:href="@{patients/{id}(id=${patient.getId()})}" ></a></td>
-                <td><a th:href="@{patients/{id}(id=${patient.getId()})}" ></a></td>
+                <td><a th:text="${patient.getPerson()}" th:href="@{patients/{id}/edit(id=${patient.getId()})}"></a></td>
+                <td><a th:text="${patient.person.getPhone()}" th:href="@{patients/{id}(id=${patient.getId()})}"></a></td>
+                <td><a th:text="${patient.person.getFactAddress()}" th:href="@{patients/{id}(id=${patient.getId()})}"></a></td>
             </tr>
             </tbody>
         </table>

@@ -13,7 +13,6 @@
     .btn-save{margin-left:1%}
     .form-control{background-color:#e6f3fe}
     .table-zone {margin-left: 160px;font-size:14px;width: auto;font-family: sans-serif}
-    .error{color: red}
   </style>
 </head>
 <body>
@@ -22,38 +21,12 @@
   <div class="row">
     <div th:replace="/main/common.html::menu"></div>
 
-    <form th:method="post" th:action ="@{/patients}" th:object="${patient}" class="needs-validation" novalidate>
+    <form th:method="POST" th:action ="@{/patients}" th:object="${patient}" class="needs-validation" novalidate>
       <div class="row">
         <input class="col-2 btn btn-save" type="submit" value="Сохранить">
       </div>
-      <br>
-      <div class="row g-3">
-        <div class="col-sm-4 input-group-sm">
-          <label for="Name" >Имя:</label>
-          <input type="text" th:field="*{name}" class="form-control" id="Name"  required/>
-          <div  th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="'error'" ></div>
-        </div>
-        <div class="col-sm-4 input-group-sm">
-          <label for="Surname">Фамилия:</label>
-          <input type="text" class="form-control" th:field="*{surname}"id="Surname" required>
-          <div  th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" th:class="'error'"></div>
-        </div>
-        <div class="col-sm-4 input-group-sm">
-          <label for="Patronymic">Отчетство:</label>
-          <input type="text" class="form-control bg-color" th:field="*{patronymic}" id="Patronymic">
-          <div  th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}" th:class="'error'"></div>
-        </div>
-       </div>
-      <br>
-      <div class="row g-3">
-        <div class="col-sm-4 input-group-sm">
-          <label for="Email" >Почта:</label>
-          <input type="text" th:field="*{email}" class="form-control" id="Email" placeholder="ivanovich@gmail.com" required/>
-          <div  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="'error'" ></div>
-        </div>
-      </div>
+      <div th:replace="/patients/common-fields.html :: patient-fields"/>
     </form>
-
   </div>
 </div>
 

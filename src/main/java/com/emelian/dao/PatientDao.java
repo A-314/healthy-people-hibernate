@@ -1,6 +1,7 @@
 package com.emelian.dao;
 
 import com.emelian.model.Patient;
+import com.emelian.model.Person;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,8 +22,7 @@ public class PatientDao {
     @Transactional(readOnly = true)
     public List<Patient> index() {
         Session session;
-        try {  session = sessionFactory.getCurrentSession();
-        }catch(HibernateException e){session = sessionFactory.openSession();}
+      session = sessionFactory.openSession();
         return session.createQuery("select p from Patient p", Patient.class).getResultList();
     }
     @Transactional
@@ -33,23 +33,24 @@ public class PatientDao {
         return session.get(Patient.class,id);
     }
     @Transactional
-    public void save(Patient patient){
+    public void save(Patient patient, Person person){
         Session session;
         try {
             session = sessionFactory.getCurrentSession();
         }catch(HibernateException e){session = sessionFactory.openSession();
             e.printStackTrace();}
-
+        session.save(person);
         session.save(patient);
     }
     @Transactional
     public void update(int id,Patient updatePatient){
-        Session session = sessionFactory.getCurrentSession();
-        Patient patientToBeUpdated = session.get(Patient.class, id);
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        }catch(HibernateException e){session = sessionFactory.openSession();
+            e.printStackTrace();}
+        session.update(updatePatient);
 
-        patientToBeUpdated.setName(updatePatient.getName());
-        patientToBeUpdated.setSurname(updatePatient.getSurname());
-        patientToBeUpdated.setPatronymic(updatePatient.getPatronymic());
     }
     @Transactional
     public void delete(int id){
@@ -60,14 +61,8 @@ public class PatientDao {
         try {
             Patient patient =  session.get(Patient.class, id);
             session.delete(patient);
-            //session.getTransaction().commit();
         }catch (HibernateException e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
-
-    }
-
-
-
-}
+    }}
